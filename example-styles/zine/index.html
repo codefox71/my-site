@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codefox / Zine Lab</title>
+  <style>
+    :root {
+      --paper: #f7f0dd;
+      --ink: #1a1713;
+      --red: #d94732;
+      --blue: #2c77b8;
+      --yellow: #f4d35e;
+      --green: #7aae6a;
+      --panel: #fffaf0;
+      --shadow: 6px 6px 0 var(--ink);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: repeating-linear-gradient(0deg, #f4e7c9 0, #f4e7c9 2px, #f1e6d1 2px, #f1e6d1 6px);
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+    .page { max-width: 1040px; margin: 0 auto; padding: 28px 20px 60px; }
+    .masthead {
+      display: flex; justify-content: space-between; align-items: end; gap: 20px;
+      border: 4px solid var(--ink); background: var(--yellow); box-shadow: var(--shadow); padding: 18px 20px; transform: rotate(-1.3deg);
+    }
+    .masthead h1 { margin: 0; font-size: clamp(2.5rem, 7vw, 5.2rem); line-height: .85; letter-spacing: -.06em; text-transform: uppercase; }
+    .issue { font-weight: 900; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; writing-mode: vertical-rl; transform: rotate(180deg); }
+    .grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 24px; margin-top: 28px; }
+    .panel { border: 4px solid var(--ink); background: var(--panel); box-shadow: var(--shadow); padding: 18px; }
+    .panel.red { background: #f6d2cb; }
+    .panel.blue { background: #dcebff; }
+    .panel.green { background: #dfeecf; }
+    .kicker { display: inline-block; background: var(--red); color: white; padding: 6px 10px; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; border: 3px solid var(--ink); transform: rotate(-3deg); }
+    .feature { font-size: clamp(2.3rem, 6vw, 4rem); line-height: .9; letter-spacing: -.06em; margin: 18px 0 12px; text-transform: uppercase; }
+    .body-copy { font-size: 1rem; line-height: 1.7; margin: 0; max-width: 40ch; }
+    .stack { display: grid; gap: 18px; }
+    .mini-title { margin: 0 0 12px; font-size: 1.4rem; text-transform: uppercase; letter-spacing: -.04em; }
+    .shape { height: 210px; border: 4px solid var(--ink); background: radial-gradient(circle at 25% 35%, rgba(255,255,255,0.8) 0 10%, transparent 10.5%), linear-gradient(135deg, var(--blue) 0%, var(--green) 100%); position: relative; overflow: hidden; }
+    .shape::before, .shape::after { content: ""; position: absolute; inset: 12% 20%; border: 4px solid var(--ink); transform: rotate(18deg); }
+    .shape::after { inset: auto 15% 12% 15%; height: 52%; border-color: var(--red); transform: rotate(-14deg); }
+    .bottom-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+    .card { border: 4px solid var(--ink); background: var(--panel); box-shadow: var(--shadow); min-height: 180px; padding: 14px; }
+    .card:nth-child(1) { background: var(--yellow); }
+    .card:nth-child(2) { background: #d9f2ff; }
+    .card:nth-child(3) { background: #f7d9e0; }
+    .tag { display: block; margin-bottom: 10px; font-size: .72rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .nav { display: flex; gap: 14px; flex-wrap: wrap; padding-top: 18px; font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; }
+    .nav a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    @media (max-width: 760px) { .grid, .bottom-grid { grid-template-columns: 1fr; } .masthead { transform: none; } .issue { writing-mode: initial; transform: none; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div>
+        <h1>Signal<br>Issue</h1>
+        <nav class="nav">
+          <a href="index.html">home</a>
+          <a href="emerg.html">cegl</a>
+          <a href="../book-shelf/index.html">shelf</a>
+        </nav>
+      </div>
+      <div class="issue">Vol. 07 / no. 3</div>
+    </header>
+
+    <section class="grid">
+      <article class="panel red">
+        <span class="kicker">Field Notes</span>
+        <h2 class="feature">Small Systems<br>Big Noise</h2>
+        <p class="body-copy">Codefox's digital labs in a zine cut-and-paste mode: loud headlines, layered paper, and noisy patterns built from tiny local rules.</p>
+      </article>
+      <aside class="stack">
+        <div class="panel blue">
+          <h3 class="mini-title">Current Signal</h3>
+          <p class="body-copy">Flocks move with soft coherence and surprising rhythm.</p>
+        </div>
+        <div class="panel green">
+          <h3 class="mini-title">Archive</h3>
+          <p class="body-copy">Cellular life, boids, and the visible edges of emergence.</p>
+        </div>
+      </aside>
+    </section>
+
+    <div class="shape" aria-hidden="true"></div>
+
+    <section class="bottom-grid">
+      <article class="card">
+        <span class="tag">01 / Flock</span>
+        <p class="body-copy">Simple local rules create large collective motion.</p>
+      </article>
+      <article class="card">
+        <span class="tag">02 / Bloom</span>
+        <p class="body-copy">Growth is a form of memory written into noise.</p>
+      </article>
+      <article class="card">
+        <span class="tag">03 / Drift</span>
+        <p class="body-copy">Every tiny decision compounds into a visible shape.</p>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

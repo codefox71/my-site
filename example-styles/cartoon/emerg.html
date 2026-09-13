@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEGL / Cartoon Lab</title>
+  <style>
+    :root {
+      --bg: #cfe7ff;
+      --panel: #fffdf4;
+      --ink: #1d1a1a;
+      --yellow: #ffd75d;
+      --orange: #ff8d5c;
+      --pink: #ffbfd5;
+      --green: #9ad78d;
+      --blue: #68a9ff;
+      --shadow: 6px 6px 0 var(--ink);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; background: linear-gradient(#cfe7ff 0%, #eaf7ff 52%, #d7f4d0 52%, #d7f4d0 100%);
+      color: var(--ink); font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+    }
+    .page { width: min(1100px, calc(100% - 30px)); margin: 32px auto; }
+    .header {
+      background: #fffef6; border: 4px solid var(--ink); box-shadow: var(--shadow); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    }
+    .sun { width: 86px; height: 86px; border: 4px solid var(--ink); border-radius: 50%; background: var(--yellow); position: relative; }
+    .sun::before, .sun::after { content: ""; position: absolute; inset: -16px; border: 4px dashed var(--ink); border-radius: 50%; }
+    .title { display: flex; align-items: center; gap: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+    .nav { display: flex; gap: 14px; flex-wrap: wrap; font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; }
+    .nav a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    .bubbles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+    .card { border: 4px solid var(--ink); box-shadow: var(--shadow); padding: 18px; min-height: 230px; }
+    .card:nth-child(1) { background: #ffe7ab; }
+    .card:nth-child(2) { background: #d2ebff; }
+    .card:nth-child(3) { background: #ffd0d9; }
+    .bubble { display: inline-block; background: var(--orange); color: var(--ink); border: 4px solid var(--ink); border-radius: 18px; padding: 8px 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+    .card h2 { margin: 16px 0 10px; font-size: clamp(1.8rem, 3vw, 2.8rem); text-transform: uppercase; line-height: .9; }
+    .card p { margin: 0; line-height: 1.75; }
+    .scene { height: 188px; margin-top: 18px; border: 4px solid var(--ink); background: linear-gradient(#d6efff 0%, #d6efff 50%, #95d591 50%, #95d591 100%); position: relative; overflow: hidden; }
+    .cloud, .cloud::before, .cloud::after { position: absolute; background: white; border: 4px solid var(--ink); border-radius: 50%; }
+    .cloud { width: 150px; height: 56px; left: 26px; top: 18px; }
+    .cloud::before { content: ""; left: 16px; bottom: 16px; width: 44px; height: 44px; }
+    .cloud::after { content: ""; right: 12px; bottom: 10px; width: 52px; height: 52px; }
+    .hill { position: absolute; bottom: 0; left: -15%; width: 130%; height: 72px; background: var(--green); border-top: 4px solid var(--ink); }
+    .tree { position: absolute; right: 80px; bottom: 30px; width: 90px; height: 150px; }
+    .tree::before { content: ""; position: absolute; left: 36px; bottom: 0; width: 18px; height: 54px; background: #8a5a2a; border: 4px solid var(--ink); }
+    .tree::after { content: ""; position: absolute; left: 12px; bottom: 46px; width: 68px; height: 68px; background: var(--green); border: 4px solid var(--ink); border-radius: 50%; box-shadow: -18px 18px 0 0 var(--green), 16px 18px 0 0 var(--green); }
+    .footer { margin-top: 18px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    @media (max-width: 760px) { .bubbles { grid-template-columns: 1fr; } .header { display:block; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="title">
+        <span class="sun" aria-hidden="true"></span>
+        <span>Cartoon Lab / CEGL</span>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">home</a>
+        <a href="emerg.html">cegl</a>
+      </nav>
+    </header>
+
+    <section class="bubbles">
+      <article class="card">
+        <span class="bubble">boids</span>
+        <h2>Murmuration</h2>
+        <p>Little creatures drift in groups until they settle into a single comic rhythm.</p>
+        <div class="scene" aria-hidden="true"><div class="cloud"></div><div class="tree"></div><div class="hill"></div></div>
+      </article>
+
+      <article class="card">
+        <span class="bubble">cells</span>
+        <h2>Genetic Bloom</h2>
+        <p>A tiny cell grows by exploring its environment, collecting nourishment, and changing shape.</p>
+        <div class="scene" aria-hidden="true"><div class="cloud"></div><div class="tree"></div><div class="hill"></div></div>
+      </article>
+
+      <article class="card">
+        <span class="bubble">automata</span>
+        <h2>Night Bloom</h2>
+        <p>Every pixel checks its neighbors. A small rule set creates a larger texture and a new pattern.</p>
+        <div class="scene" aria-hidden="true"><div class="cloud"></div><div class="tree"></div><div class="hill"></div></div>
+      </article>
+    </section>
+
+    <div class="footer">field notes / codefox's emergent garden of life</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEGL / Shelf Lab</title>
+  <style>
+    :root {
+      --bg: #efe7d5;
+      --wood: #8f6133;
+      --wood-dark: #6d4726;
+      --paper: #f9f4eb;
+      --ink: #1d1b1a;
+      --rose: #dcb0a0;
+      --sage: #c1d5b5;
+      --blue: #bbd5ea;
+      --shadow: 8px 8px 0 rgba(29, 27, 26, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: linear-gradient(180deg, #f3ede3 0%, var(--bg) 100%); color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+    .page { width: min(1100px, calc(100% - 32px)); margin: 42px auto; }
+    .nav { display: flex; gap: 14px; flex-wrap: wrap; padding-bottom: 18px; font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; }
+    .nav a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    .shelf { background: linear-gradient(180deg, var(--wood) 0%, var(--wood-dark) 100%); border: 4px solid var(--ink); box-shadow: var(--shadow); padding: 18px 22px 14px; }
+    .top { height: 18px; background: rgba(255,255,255,0.14); border: 2px solid rgba(0,0,0,0.15); margin-bottom: 18px; }
+    .books { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .book { border: 3px solid rgba(0,0,0,0.72); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08); min-height: 200px; padding: 14px; }
+    .book:nth-child(1) { background: var(--rose); }
+    .book:nth-child(2) { background: var(--sage); }
+    .book:nth-child(3) { background: var(--blue); }
+    .book .tag { display: inline-block; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid rgba(0,0,0,0.7); margin-bottom: 12px; }
+    .book h2 { margin: 0 0 10px; font-size: clamp(2rem, 3vw, 3rem); line-height: .9; letter-spacing: -.05em; }
+    .book p { margin: 0; line-height: 1.7; }
+    .footer { margin-top: 30px; border-top: 4px solid var(--ink); padding-top: 10px; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="nav">
+      <a href="index.html">home</a>
+      <a href="emerg.html">cegl</a>
+    </div>
+
+    <div class="shelf">
+      <div class="top" aria-hidden="true"></div>
+      <div class="books">
+        <article class="book">
+          <div class="tag">boids</div>
+          <h2>Murmuration</h2>
+          <p>Simple neighbors create a shared direction, and a flock becomes visible as one moving body.</p>
+        </article>
+        <article class="book">
+          <div class="tag">cells</div>
+          <h2>Genetic Bloom</h2>
+          <p>Growth, hunger, reproduction, and mutation turn a local rule set into a colony story.</p>
+        </article>
+        <article class="book">
+          <div class="tag">automata</div>
+          <h2>Night Bloom</h2>
+          <p>Neighborhood logic turns a simple field into a texture with life, density, and pattern.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="footer">codefox's emergent garden of life</div>
+  </div>
+</body>
+</html>

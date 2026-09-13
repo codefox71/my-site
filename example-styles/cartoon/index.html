@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartoon Style Example</title>
+  <style>
+    :root {
+      --bg: #cfe7ff;
+      --panel: #fffdf4;
+      --ink: #1d1a1a;
+      --sky: #8fd3ff;
+      --grass: #9ad78d;
+      --sun: #ffd45d;
+      --pink: #ffb3c7;
+      --blue: #5d9af5;
+      --orange: #ff8d5c;
+      --shadow: 6px 6px 0 var(--ink);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(#cfe7ff 0%, #eaf7ff 52%, #d7f4d0 52%, #d7f4d0 100%);
+      color: var(--ink);
+      font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+      min-height: 100vh;
+    }
+
+    .scene {
+      width: min(1100px, calc(100% - 30px));
+      margin: 32px auto;
+      background: rgba(255,255,255,0.35);
+      border: 4px solid var(--ink);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .skybar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border: 4px solid var(--ink);
+      background: #fffef6;
+      box-shadow: var(--shadow);
+    }
+
+    .sun {
+      width: 96px;
+      height: 96px;
+      border: 4px solid var(--ink);
+      border-radius: 50%;
+      background: var(--sun);
+      position: relative;
+      margin-right: 18px;
+      box-shadow: inset 0 0 0 8px rgba(255,255,255,0.35);
+    }
+
+    .sun::before, .sun::after {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      border: 4px dashed var(--ink);
+      border-radius: 50%;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .panel-row {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .panel {
+      border: 4px solid var(--ink);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .panel.blue { background: #d6efff; }
+    .panel.pink { background: #ffd9ea; }
+    .panel.green { background: #dbf4ca; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      line-height: .85;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .bubble {
+      display: inline-block;
+      background: var(--orange);
+      border: 4px solid var(--ink);
+      padding: 8px 12px;
+      border-radius: 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 12px;
+    }
+
+    .lede {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0;
+      max-width: 38ch;
+    }
+
+    .mini-scene {
+      height: 230px;
+      border: 4px solid var(--ink);
+      background: linear-gradient(#d6efff 0%, #d6efff 50%, #95d591 50%, #95d591 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .cloud, .cloud::before, .cloud::after {
+      position: absolute;
+      background: white;
+      border: 4px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .cloud {
+      width: 140px;
+      height: 52px;
+      top: 25px;
+      left: 30px;
+    }
+
+    .cloud::before {
+      content: "";
+      width: 46px;
+      height: 46px;
+      left: 12px;
+      bottom: 12px;
+    }
+
+    .cloud::after {
+      content: "";
+      width: 58px;
+      height: 58px;
+      right: 18px;
+      bottom: 10px;
+    }
+
+    .hill {
+      position: absolute;
+      bottom: 0;
+      width: 180%;
+      height: 76px;
+      left: -20%;
+      background: var(--grass);
+      border-top: 4px solid var(--ink);
+    }
+
+    .tree {
+      position: absolute;
+      bottom: 42px;
+      right: 80px;
+      width: 90px;
+      height: 130px;
+    }
+
+    .tree::before {
+      content: "";
+      position: absolute;
+      left: 36px;
+      bottom: 0;
+      width: 18px;
+      height: 56px;
+      background: #8a5a2a;
+      border: 4px solid var(--ink);
+    }
+
+    .tree::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      bottom: 42px;
+      width: 70px;
+      height: 70px;
+      background: var(--green);
+      border: 4px solid var(--ink);
+      border-radius: 50%;
+      box-shadow: -18px 18px 0 0 var(--green), 16px 18px 0 0 var(--green);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      min-height: 180px;
+      border: 4px solid var(--ink);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      background: #fffef7;
+      position: relative;
+    }
+
+    .card:nth-child(1) { background: #ffe09e; }
+    .card:nth-child(2) { background: #d5f0ff; }
+    .card:nth-child(3) { background: #ffd2d9; }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .card p { margin: 0; line-height: 1.7; }
+
+    @media (max-width: 760px) {
+      .panel-row, .cards { grid-template-columns: 1fr; }
+      .skybar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <header class="skybar">
+      <div class="title">
+        <span class="sun" aria-hidden="true"></span>
+        <span>Cartoon Lab</span>
+      </div>
+      <div class="bubble">03 / observations</div>
+    </header>
+
+    <section class="panel-row">
+      <article class="panel blue">
+        <span class="bubble">signal</span>
+        <h1>Playful<br>Systems</h1>
+        <p class="lede">A cartoon take on the same ideas: bright colors, simple shapes, and a friendly sense that the system is alive even when it is not literal.</p>
+      </article>
+
+      <aside class="panel pink">
+        <h2>Today</h2>
+        <p class="lede">Flocking. Growth. Noise. Each one is a little scene with expressive motion.</p>
+      </aside>
+    </section>
+
+    <div class="mini-scene" aria-label="cartoon landscape">
+      <div class="cloud"></div>
+      <div class="tree"></div>
+      <div class="hill"></div>
+    </div>
+
+    <section class="cards">
+      <article class="card">
+        <h3>Drift</h3>
+        <p>Particles wander, then lock into a loose choreography.</p>
+      </article>
+      <article class="card">
+        <h3>Bloom</h3>
+        <p>Patterns spread like watercolor blooms when the rules are right.</p>
+      </article>
+      <article class="card">
+        <h3>Loop</h3>
+        <p>Systems repeat until they create new forms and unexpected details.</p>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

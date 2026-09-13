@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codefox / Shelf Lab</title>
+  <style>
+    :root {
+      --bg: #efe7d5;
+      --wood: #8f6133;
+      --wood-dark: #6d4726;
+      --paper: #f9f4eb;
+      --ink: #1d1b1a;
+      --rose: #dcb0a0;
+      --sage: #c1d5b5;
+      --blue: #bbd5ea;
+      --shadow: 8px 8px 0 rgba(29, 27, 26, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: linear-gradient(180deg, #f3ede3 0%, var(--bg) 100%); color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+    .room { width: min(1100px, calc(100% - 32px)); margin: 42px auto; padding: 20px; }
+    .shelf { background: linear-gradient(180deg, var(--wood) 0%, var(--wood-dark) 100%); border: 4px solid var(--ink); box-shadow: var(--shadow); padding: 18px 22px 14px; }
+    .shelf-top { height: 18px; background: rgba(255,255,255,0.15); border: 2px solid rgba(0,0,0,0.18); margin-bottom: 18px; }
+    .books { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; align-items: end; min-height: 300px; padding: 8px 0 10px; }
+    .book { border: 3px solid rgba(0,0,0,0.72); border-bottom: 0; height: var(--h); background: linear-gradient(90deg, rgba(0,0,0,.12) 0 8%, rgba(255,255,255,.12) 8% 100%); position: relative; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
+    .book::before { content: ""; position: absolute; inset: 0 0 0 16px; background: rgba(255,255,255,0.08); }
+    .book:nth-child(1) { background-color: var(--rose); --h: 170px; }
+    .book:nth-child(2) { background-color: var(--sage); --h: 200px; }
+    .book:nth-child(3) { background-color: var(--blue); --h: 180px; }
+    .book:nth-child(4) { background-color: #f0d8a9; --h: 220px; }
+    .book:nth-child(5) { background-color: #d9c0ef; --h: 190px; }
+    .book span { position: absolute; left: 22px; top: 18px; writing-mode: vertical-rl; transform: rotate(180deg); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: rgba(0,0,0,0.8); }
+    .caption { margin-top: 30px; display: grid; grid-template-columns: 1.3fr .7fr; gap: 22px; }
+    .panel { border: 4px solid var(--ink); background: var(--paper); box-shadow: var(--shadow); padding: 18px 20px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; font-weight: 700; color: rgba(0,0,0,0.68); margin-bottom: 10px; }
+    h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: .9; letter-spacing: -.06em; }
+    p { margin: 0; font-size: 1.08rem; line-height: 1.7; }
+    .mini-card { background: linear-gradient(180deg, #f7e1d5 0%, #f2d7ba 100%); }
+    .nav { display: flex; gap: 14px; flex-wrap: wrap; padding-bottom: 18px; font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; }
+    .nav a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    @media (max-width: 760px) { .books { grid-template-columns: repeat(2, minmax(0, 1fr)); } .caption { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="room">
+    <div class="nav">
+      <a href="index.html">home</a>
+      <a href="emerg.html">cegl</a>
+      <a href="../zine/index.html">zine</a>
+    </div>
+    <div class="shelf">
+      <div class="shelf-top" aria-hidden="true"></div>
+      <div class="books" aria-label="Book shelf reference">
+        <div class="book"><span>Flock</span></div>
+        <div class="book"><span>Bloom</span></div>
+        <div class="book"><span>Signal</span></div>
+        <div class="book"><span>Field</span></div>
+        <div class="book"><span>Loop</span></div>
+      </div>
+    </div>
+
+    <section class="caption">
+      <article class="panel">
+        <div class="eyebrow">Library / index</div>
+        <h1>Bookcase<br>Catalog</h1>
+      </article>
+      <aside class="panel mini-card">
+        <p>Codefox's digital labs arranged like an archive: tactile shelves, quiet labels, and a calm browsing rhythm.</p>
+      </aside>
+    </section>
+  </div>
+</body>
+</html>
