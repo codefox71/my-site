@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CEGL / codefox's emergent garden of life</title>
+  <style>
+    :root {
+      --ink: #18231d;
+      --muted: #65736a;
+      --paper: #f2f0e7;
+      --cream: #faf9f2;
+      --acid: #d5ff55;
+      --coral: #ff775c;
+      --sky: #a9d9ff;
+      --line: #cbd2c1;
+      --dark: #17241b;
+      --shadow: 5px 5px 0 var(--ink);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, 'Times New Roman', serif;
+      background-image: linear-gradient(rgba(24, 35, 29, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 35, 29, .045) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .page { max-width: 1180px; margin: 0 auto; padding: 20px 22px 52px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--ink); padding: 0 2px 12px; font: 700 12px/1.2 'Courier New', monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .status { display: inline-flex; align-items: center; gap: 8px; }
+    .status i { width: 10px; height: 10px; display: inline-block; background: var(--acid); border: 1px solid var(--ink); border-radius: 50%; box-shadow: 0 0 0 2px var(--coral); }
+    .topbar a { color: var(--ink); text-decoration: none; border-bottom: 1px solid; }
+    header { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: end; padding: 68px 0 44px; }
+    .eyebrow { margin: 0 0 16px; font: 700 13px 'Courier New', monospace; letter-spacing: .08em; color: var(--coral); text-transform: uppercase; }
+    h1 { max-width: 720px; margin: 0; font-size: clamp(52px, 9vw, 116px); line-height: .82; letter-spacing: -.075em; font-weight: 900; }
+    .intro { align-self: center; max-width: 350px; margin: 0; font-size: 19px; line-height: 1.35; }
+    .intro strong { background: var(--acid); padding: 0 3px; }
+    .signal { margin-top: 16px; font: 11px/1.4 'Courier New', monospace; color: var(--muted); }
+    .signal span { color: var(--coral); }
+    .rule { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid var(--ink); padding: 13px 0 18px; font: 700 12px 'Courier New', monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .rule em { font-family: Georgia, serif; font-size: 14px; font-weight: normal; text-transform: none; letter-spacing: 0; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 26px; }
+    .card { background: var(--cream); border: 2px solid var(--ink); box-shadow: var(--shadow); transition: transform .22s ease, box-shadow .22s ease; transform-origin: center center; }
+    .card.focused { position: relative; z-index: 5; transform: scale(1.035); box-shadow: 9px 9px 0 var(--ink); }
+    .card.focused iframe { height: 360px; }
+    .card.large { grid-column: span 7; }
+    .card.small { grid-column: span 5; }
+    .card-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; padding: 15px 17px 13px; border-bottom: 2px solid var(--ink); }
+    h2 { margin: 0; font-size: 24px; line-height: 1; }
+    .tag { flex: 0 0 auto; background: var(--acid); border: 1px solid var(--ink); padding: 4px 7px; font: 700 10px 'Courier New', monospace; text-transform: uppercase; }
+    .card p { margin: 0; padding: 12px 17px 15px; color: var(--muted); font-size: 15px; line-height: 1.35; }
+    iframe { display: block; width: 100%; height: 318px; border: 0; background: var(--dark); }
+    .small iframe { height: 318px; }
+    .caption { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid var(--ink); padding: 10px 17px; font: 11px 'Courier New', monospace; color: var(--muted); }
+    .live { color: var(--coral); font-weight: bold; }
+    .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 45px; }
+    .note { border-top: 2px solid var(--ink); padding-top: 14px; }
+    .note h3 { margin: 0 0 9px; font-size: 18px; }
+    .note p { margin: 0; font-size: 15px; line-height: 1.45; }
+    footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 48px; border-top: 2px solid var(--ink); padding-top: 14px; font: 11px 'Courier New', monospace; color: var(--muted); }
+    @media (max-width: 760px) {
+      .page { padding: 14px 14px 40px; }
+      header { display: block; padding: 55px 0 35px; }
+      h1 { font-size: clamp(54px, 17vw, 100px); margin-bottom: 32px; }
+      .grid, .notes { display: block; }
+      .card { margin-bottom: 28px; }
+      iframe, .small iframe { height: 300px; }
+      .card.focused iframe, .small.focused iframe { height: 335px; }
+      footer { display: block; line-height: 1.7; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <span class="status"><i></i> field notes / 003</span>
+      <a href="#simulations">jump to the living bits ↓</a>
+    </div>
+
+    <header>
+      <div>
+        <p class="eyebrow">codefox's emergent garden of life</p>
+        <h1>CEGL</h1>
+      </div>
+      <div class="intro">
+        What happens when you give simple things room to move? <strong>Patterns appear.</strong> Nobody planned them.
+        <p class="signal">signal: <span>all systems active</span><br>last observed: just now</p>
+      </div>
+    </header>
+
+    <section id="simulations">
+      <div class="rule"><span>01—03 / live specimens</span><em>click, watch, wait</em></div>
+      <div class="grid">
+        <article class="card large">
+          <div class="card-head"><h2>murmuration</h2><span class="tag">boids</span></div>
+          <p>Three rules are enough for a flock: stay close, don't collide, follow the average heading. Move through it; click to scatter.</p>
+          <iframe title="Live boids flock simulation" srcdoc='<!doctype html><html><body><canvas id="c"></canvas><script>
+            const c=document.getElementById("c"),x=c.getContext("2d");let w,h,a=[],mouse={x:0,y:0,active:false},speedCap=7/60;document.body.style.margin="0";c.style.width="100%";c.style.height="100%";c.style.cursor="crosshair";
+            function size(){w=innerWidth;h=innerHeight;c.width=w*devicePixelRatio;c.height=h*devicePixelRatio;x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}addEventListener("resize",size);size();
+            function addBird(px,py){a.push({x:px,y:py,vx:Math.random()*2-1,vy:Math.random()*2-1})}for(let i=0;i<55;i++)addBird(Math.random()*w,Math.random()*h);
+            function point(e){let r=c.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}addEventListener("pointermove",e=>{mouse=Object.assign(mouse,point(e),{active:true})});addEventListener("pointerleave",()=>mouse.active=false);addEventListener("pointerdown",e=>{let p=point(e);for(let i=0;i<12;i++)addBird(p.x+(Math.random()-.5)*30,p.y+(Math.random()-.5)*30)});
+            function loop(){x.fillStyle="#17241b";x.fillRect(0,0,w,h);if(mouse.active){x.beginPath();x.arc(mouse.x,mouse.y,26,0,Math.PI*2);x.strokeStyle="rgba(213,255,85,.35)";x.stroke()}for(const p of a){let ax=0,ay=0,cx=0,cy=0,n=0;for(const q of a){let dx=q.x-p.x,dy=q.y-p.y,d=Math.hypot(dx,dy);if(q!==p&&d<76){if(d<19){ax-=dx*.012;ay-=dy*.012}else{ax+=q.vx*.004;ay+=q.vy*.004}cx+=q.x;cy+=q.y;n++}}if(n){p.vx+=ax+(cx/n-p.x)*.0008;p.vy+=ay+(cy/n-p.y)*.0008}if(mouse.active){let dx=mouse.x-p.x,dy=mouse.y-p.y,d=Math.hypot(dx,dy)||1;if(d<150){p.vx+=dx/d*.035;p.vy+=dy/d*.035}}let s=Math.hypot(p.vx,p.vy)||1;p.vx=p.vx/s*speedCap;p.vy=p.vy/s*speedCap;p.x=(p.x+p.vx+w)%w;p.y=(p.y+p.vy+h)%h;x.save();x.translate(p.x,p.y);x.rotate(Math.atan2(p.vy,p.vx));x.fillStyle="#d5ff55";x.beginPath();x.moveTo(7,0);x.lineTo(-5,-3);x.lineTo(-3,3);x.fill();x.restore()}requestAnimationFrame(loop)}loop();
+          &lt;/script></body></html>'></iframe>
+          <div class="caption"><span class="live">● running</span><span>move to gather / click to seed</span></div>
+        </article>
+
+        <article class="card small">
+          <div class="card-head"><h2>genetic bloom</h2><span class="tag">cell life</span></div>
+          <p>Every cell inherits a genome. It hunts food, spends energy to grow segments, flagella, and organelles, then reproduces with small genetic variations.</p>
+          <iframe title="Live genetic colony simulation" srcdoc='<!doctype html><html><body><canvas id="c"></canvas><script>
+            const c=document.getElementById("c"),x=c.getContext("2d");let w,h,colonies=[],corpses=[],food=[],paused=false,speedCap=7/60;document.body.style.margin="0";c.style.width="100%";c.style.height="100%";c.style.cursor="cell";
+            function size(){w=innerWidth;h=innerHeight;c.width=w;c.height=h;if(!colonies.length)seed(w*.5,h*.55,[.48,.48,.42,.72,.45,.38,.54]);if(!food.length)for(let i=0;i<70;i++)addFood(Math.random()*w,Math.random()*h)}addEventListener("resize",size);size();
+            function clamp(v){return Math.max(.04,Math.min(.96,v))}function seed(px,py,g){colonies.push({x:px,y:py,vx:Math.random()*1.4-0.7,vy:Math.random()*1.4-0.7,age:0,energy:1.6,g:g||[Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random()]})}
+            function addFood(px,py){food.push({x:px,y:py,energy:.4+Math.random()*.35})}function point(e){let r=c.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}addEventListener("pointerdown",e=>{let p=point(e);if(e.shiftKey){for(let i=0;i<12;i++)addFood(p.x+(Math.random()-.5)*28,p.y+(Math.random()-.5)*28);return}let g=[p.x/w,p.y/h,.12+p.x/w*.8,.12+p.y/h*.8,.12+Math.random()*.75,.18+p.y/h*.7,.2+p.x/w*.7];seed(p.x,p.y,g);for(let i=0;i<3;i++)seed(p.x+(Math.random()-.5)*22,p.y+(Math.random()-.5)*22,g.map(v=>clamp(v+(Math.random()-.5)*.08)));if(colonies.length>180)colonies.splice(0,40)});addEventListener("keydown",e=>{if(e.code==="Space"){paused=!paused;e.preventDefault()}if(e.key.toLowerCase()==="r"){colonies=[];corpses=[];food=[];size()}});
+            function divide(o){let g=o.g.map(v=>clamp(v+(Math.random()-.5)*.16));seed(o.x+Math.random()*8-4,o.y+Math.random()*8-4,g);o.energy-=.58}
+            function drawBody(o){let g=o.g,hue=Math.floor(g[0]*360),radius=2+g[1]*6,segments=1+Math.floor(g[2]*5),flagella=g[3]>.45?1+Math.floor(g[3]*4):0,organelles=1+Math.floor(g[4]*5),angle=Math.atan2(o.vy,o.vx);x.save();x.translate(o.x,o.y);x.rotate(angle);if(flagella){x.strokeStyle="hsla("+hue+",90%,72%,.46)";x.lineWidth=1;for(let f=0;f<flagella;f++){let side=f%2?1:-1;x.beginPath();x.moveTo(-radius*.5,0);for(let q=1;q<7;q++){let fx=-radius*.5-q*radius*.9,fy=side*Math.sin(q*.9+o.age*.09)*radius*.45;x.lineTo(fx,fy)}x.stroke()}}x.strokeStyle="hsla("+hue+",90%,80%,.52)";x.lineWidth=1.5;x.beginPath();x.moveTo(-radius*(segments-1)*.55,0);x.lineTo(radius*(segments-1)*.55,0);x.stroke();for(let seg=0;seg<segments;seg++){let sx=(seg-(segments-1)/2)*radius*1.1;x.fillStyle="hsl("+hue+",88%,"+(58+seg*4)+"%)";x.beginPath();x.arc(sx,0,radius*(1-.08*Math.abs(seg-(segments-1)/2)),0,Math.PI*2);x.fill()}for(let organ=0;organ<organelles;organ++){let oa=organ*2.4+o.age*.015,ox=Math.cos(oa)*radius*.42,oy=Math.sin(oa)*radius*.42;x.fillStyle="#17241b";x.beginPath();x.arc(ox,oy,Math.max(1,radius*.16),0,Math.PI*2);x.fill()}x.restore()}
+            function loop(){x.fillStyle="#17241b";x.fillRect(0,0,w,h);x.fillStyle="#d5ff55";x.font="11px monospace";x.fillText("GENOME  HUE SIZE SEG FLAG ORGANELLE METABOLISM",12,18);for(const f of food){x.fillStyle="#a9d9ff";x.beginPath();x.arc(f.x,f.y,2,0,Math.PI*2);x.fill()}if(!paused&&food.length<160&&Math.random()<.03)addFood(Math.random()*w,Math.random()*h);for(let i=colonies.length-1;i>=0;i--){let o=colonies[i],g=o.g;if(!paused){o.age++;o.energy-=.00035+g[5]*.0005+g[3]*.0001;let target=null,near=Infinity;for(const f of food){let d=Math.hypot(f.x-o.x,f.y-o.y);if(d<near){near=d;target=f}}let turn=(g[6]-.5)*.08;if(target&&near<130){let distance=near||1;o.vx+=(target.x-o.x)/distance*.012;o.vy+=(target.y-o.y)/distance*.012;if(near<7){o.energy=Math.min(2.5,o.energy+target.energy);food.splice(food.indexOf(target),1)}}o.vx=Math.cos(o.age*.01+turn)*(.18+g[3]*.32)+o.vx*.96;o.vy=Math.sin(o.age*.013+turn)*(.18+g[3]*.32)+o.vy*.96;let s=Math.hypot(o.vx,o.vy)||1;o.vx=o.vx/s*speedCap;o.vy=o.vy/s*speedCap;o.x=(o.x+o.vx+w)%w;o.y=(o.y+o.vy+h)%h;if(o.age>28&&o.energy>1.45&&Math.random()<.012*g[6])divide(o);if(o.energy<=0||o.age>3600-g[1]*700){corpses.push({x:o.x,y:o.y,hue:g[0]*360,r:2+g[1]*6,life:1});colonies.splice(i,1);continue}}drawBody(o);x.strokeStyle="hsla("+(g[0]*360)+",90%,72%,.42)";x.beginPath();x.arc(o.x,o.y,(2+g[1]*6)+3,0,Math.PI*2*g[5]);x.stroke()}for(let i=corpses.length-1;i>=0;i--){let d=corpses[i];d.life-=.012;x.fillStyle="hsla("+d.hue+",70%,58%,"+d.life*.5+")";x.beginPath();x.arc(d.x,d.y,d.r*(2-d.life),0,Math.PI*2);x.fill();if(d.life<=0)corpses.splice(i,1)}x.fillStyle="#ff775c";x.fillText("living "+colonies.length+"  /  food "+food.length+"  /  remains "+corpses.length,12,34);if(paused){x.fillStyle="#d5ff55";x.fillText("PAUSED / SPACE TO RESUME",12,50)}requestAnimationFrame(loop)}loop();
+          &lt;/script></body></html>'></iframe>
+          <div class="caption"><span class="live">● running</span><span>click life / shift-click food / space / R</span></div>
+        </article>
+
+        <article class="card small">
+          <div class="card-head"><h2>night bloom</h2><span class="tag">cellular</span></div>
+          <p>Each cell reads its eight neighbors. Click to edit the population; press space to pause.</p>
+          <iframe title="Live cellular automaton simulation" srcdoc='<!doctype html><html><body><canvas id="c"></canvas><script>
+            const c=document.getElementById("c"),x=c.getContext("2d"),s=9;let w,h,a,b,paused=false,painting=false;document.body.style.margin="0";c.style.width="100%";c.style.height="100%";c.style.cursor="crosshair";
+            function size(){w=Math.ceil(innerWidth/s);h=Math.ceil(innerHeight/s);c.width=innerWidth;c.height=innerHeight;reset()}function reset(){a=new Uint8Array(w*h);b=new Uint8Array(w*h);for(let i=0;i<a.length;i++)a[i]=Math.random()>.73?1:0}addEventListener("resize",size);size();
+            function toggle(e){let r=c.getBoundingClientRect(),q=Math.floor((e.clientX-r.left)/s),y=Math.floor((e.clientY-r.top)/s);if(q>=0&&q<w&&y>=0&&y<h)a[y*w+q]=1}addEventListener("pointerdown",e=>{painting=true;toggle(e)});addEventListener("pointermove",e=>{if(painting)toggle(e)});addEventListener("pointerup",()=>painting=false);addEventListener("keydown",e=>{if(e.code==="Space"){paused=!paused;e.preventDefault()}if(e.key.toLowerCase()==="r")reset()});
+            function loop(){x.fillStyle="#17241b";x.fillRect(0,0,innerWidth,innerHeight);for(let y=0;y<h;y++)for(let q=0;q<w;q++){let i=y*w+q,k=0;for(let dy=-1;dy<2;dy++)for(let dx=-1;dx<2;dx++)if(dx||dy)k+=a[((y+dy+h)%h)*w+(q+dx+w)%w];let live=a[i];b[i]=live?(k===2||k===3):k===3;if(b[i]){x.fillStyle=live?"#ff775c":"#d5ff55";x.fillRect(q*s,y*s,s-1,s-1)}}if(!paused){let z=a;a=b;b=z}else{x.fillStyle="#d5ff55";x.font="12px monospace";x.fillText("PAUSED / SPACE TO RESUME",12,20)}requestAnimationFrame(loop)}loop();
+          &lt;/script></body></html>'></iframe>
+          <div class="caption"><span class="live">● running</span><span>click / drag / space / R</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="notes">
+      <div class="note"><h3>emergence ≠ magic</h3><p>It is the low-level stuff doing its job: local decisions, repeated thousands of times, making a shape that no single part can see.</p></div>
+      <div class="note"><h3>stay a while</h3><p>These little worlds have no finish line. Refresh to reseed them, resize the window to disturb them, or simply let them surprise you.</p></div>
+    </section>
+    <footer><span>CEGL / field notes 003</span><span>codefox's emergent garden of life</span></footer>
+  </main>
+  <script>
+    const simulationCards = [...document.querySelectorAll(".card")];
+    function focusSimulation(frame) {
+      const card = frame.closest(".card");
+      simulationCards.forEach(item => item.classList.toggle("focused", item === card));
+      frame.focus({ preventScroll: true });
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    function shrinkSimulations() {
+      simulationCards.forEach(item => item.classList.remove("focused"));
+    }
+    window.addEventListener("blur", () => {
+      const active = document.activeElement;
+      if (active && active.tagName === "IFRAME") focusSimulation(active);
+    });
+    document.addEventListener("focusin", event => {
+      if (event.target.tagName === "IFRAME") focusSimulation(event.target);
+    });
+    document.addEventListener("pointerdown", event => {
+      const frame = event.target.closest("iframe");
+      if (frame) focusSimulation(frame);
+      else if (!event.target.closest(".card")) shrinkSimulations();
+    });
+  </script>
+</body>
+</html>
